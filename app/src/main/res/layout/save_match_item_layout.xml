@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="16dp"
+        >
+
+        <TextView
+            android:id="@+id/scoreTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="57/2"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Team name"
+                    android:id="@+id/teamNameTv"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="12dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Over : 4.6"
+                    android:id="@+id/OverTv"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="12dp"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>

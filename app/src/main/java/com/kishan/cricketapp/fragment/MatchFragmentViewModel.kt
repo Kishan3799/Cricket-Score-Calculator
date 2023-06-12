@@ -1,9 +1,26 @@
-package com.kishan.cricketapp
+package com.kishan.cricketapp.fragment
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.kishan.cricketapp.R
+import com.kishan.cricketapp.data.local.AppDataBase
+import com.kishan.cricketapp.data.local.MatchDao
+import com.kishan.cricketapp.data.local.MatchEntity
+import kotlinx.coroutines.launch
 import java.util.Stack
 
-class MainViewModel : ViewModel() {
+class MatchFragmentViewModel : ViewModel() {
+
+
+
+
+    var name: String = "Enter Team Name"
 
     var score: Int = 0
     var wicket: Int = 0
@@ -73,7 +90,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
+
     fun resetAll() {
+        name = "Enter Team Name"
         score = 0
         wicket = 0
         over = 0
@@ -104,6 +123,25 @@ class MainViewModel : ViewModel() {
         if (!wicketHistory.isEmpty()){
             wicket = wicketHistory.pop()
         }
+    }
+
+    fun showTeamName(context:Context, textView: TextView){
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_enter_team_name, null)
+        val teamNameEt = dialogView.findViewById<EditText>(R.id.teamNameET)
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setTitle("Enter Team Name")
+            .setPositiveButton("OK"){ dialog, which ->
+                    name = teamNameEt.text.toString()
+                    textView.text = name
+            }
+            .setNegativeButton("Cancel"){ dialog, which->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog.show()
     }
 
 }

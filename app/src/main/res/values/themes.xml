@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CricketApp" parent="Theme.AppCompat">
+    <style name="Theme.CricketApp" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue900</item>
         <item name="colorPrimaryVariant">@color/blue200</item>
