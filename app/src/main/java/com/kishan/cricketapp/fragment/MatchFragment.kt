@@ -150,19 +150,24 @@ class MatchFragment: Fragment() {
 
         binding.saveData.setOnClickListener {
             buttonHover(binding.saveData)
-           val dao = AppDataBase.getInstance(requireContext()).matchDao()
-            lifecycleScope.launch {
-                dao.saveMatchScore(
-                    MatchEntity(
-                        matchTeamName = viewModel.name,
-                        matchScore = viewModel.totalScore,
-                        matchWicket = viewModel.totalWicket,
-                        matchBall = viewModel.totalBalls,
-                        matchOvers = viewModel.totalOver
+            if (viewModel.name == null){
+                Toast.makeText(requireContext(), "Please Enter Team Name", Toast.LENGTH_SHORT).show()
+            }else{
+                val dao = AppDataBase.getInstance(requireContext()).matchDao()
+                lifecycleScope.launch {
+                    dao.saveMatchScore(
+                        MatchEntity(
+                            matchId = 0,
+                            matchTeamName = viewModel.name!!,
+                            matchScore = viewModel.totalScore,
+                            matchWicket = viewModel.totalWicket,
+                            matchBall = viewModel.totalBalls,
+                            matchOvers = viewModel.totalOver)
                     )
-                )
+                }
+                Toast.makeText(requireContext(), "Match Saved successfully", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(requireContext(), "Match Saved successfully", Toast.LENGTH_SHORT).show()
+
         }
 
         return binding.root

@@ -20,7 +20,7 @@ class MatchFragmentViewModel : ViewModel() {
 
 
 
-    var name: String = "Enter Team Name"
+    var name: String? = null
 
     var score: Int = 0
     var wicket: Int = 0

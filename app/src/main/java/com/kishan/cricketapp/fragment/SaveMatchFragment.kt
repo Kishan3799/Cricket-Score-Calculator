@@ -29,18 +29,21 @@ class SaveMatchFragment : Fragment() {
         binding = FragmentSaveMatchBinding.inflate(layoutInflater)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = SaveMatchItemAdapter(requireContext(), emptyList())
+        val adapter = SaveMatchItemAdapter(requireContext(), mutableListOf())
+        binding.recyclerView.adapter = adapter
+
 
 
 
         lifecycleScope.launch {
-            dao.getAllMatchScore().observe(viewLifecycleOwner , Observer {matchList->
+            dao.getAllMatchScore().observe(viewLifecycleOwner) { matchList ->
                 adapter.updateData(matchList)
-            })
-
+            }
         }
 
-        binding.recyclerView.adapter = adapter
+
+
+
         return binding.root
     }
 

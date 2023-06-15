@@ -7,9 +7,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:hint="Enter Team Name"
         android:id="@+id/teamNameET"
+        android:textColor="@color/white"
         android:padding="16dp"
+        android:background="@drawable/dialog_bg"
         />
 
 </LinearLayout>

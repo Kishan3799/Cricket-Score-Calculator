@@ -3,17 +3,29 @@ package com.kishan.cricketapp.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
+import android.widget.Toast
+import androidx.lifecycle.Lifecycle
+
 import androidx.recyclerview.widget.RecyclerView
+import com.kishan.cricketapp.data.local.AppDataBase
+
 import com.kishan.cricketapp.data.local.MatchEntity
 import com.kishan.cricketapp.databinding.SaveMatchItemLayoutBinding
-import com.kishan.cricketapp.model.Match
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class SaveMatchItemAdapter(val context: Context, var list: List<MatchEntity> ) : RecyclerView.Adapter<SaveMatchItemAdapter.SaveMatchItemViewHolder>() {
 
-    fun updateData(newMatchList: List<MatchEntity>){
+class SaveMatchItemAdapter(val context: Context, var list: MutableList<MatchEntity> ) : RecyclerView.Adapter<SaveMatchItemAdapter.SaveMatchItemViewHolder>() {
+
+    fun updateData(newMatchList: MutableList<MatchEntity>){
         list = newMatchList
         notifyDataSetChanged()
+    }
+
+    fun deleteData(position: Int){
+        val match = list[position]
+        list.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     inner class SaveMatchItemViewHolder(val binding:SaveMatchItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -38,7 +50,21 @@ class SaveMatchItemAdapter(val context: Context, var list: List<MatchEntity> ) :
     ) {
         val data = list[position]
         holder.bind(data)
-
+        holder.binding.deleteScore.setOnClickListener {
+            Toast.makeText(context,"Delete is clicked", Toast.LENGTH_SHORT).show()
+            val dao = AppDataBase.getInstance(context).matchDao()
+            GlobalScope.launch {
+                dao.deleteMatchScore(match = MatchEntity(
+                        matchId = data.matchId,
+                        matchTeamName = data.matchTeamName,
+                        matchScore = data.matchScore,
+                        matchWicket = data.matchWicket,
+                        matchOvers = data.matchOvers,
+                        matchBall = data.matchBall
+                    )
+                )
+            }
+        }
     }
 
     override fun getItemCount(): Int {

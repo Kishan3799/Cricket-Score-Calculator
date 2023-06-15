@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cricketMatch")
 data class MatchEntity(
     @PrimaryKey(autoGenerate = true)
-    val matchId: Int = 0,
+    val matchId: Long  ,
 
     @ColumnInfo("team_name")
     val matchTeamName:String,
