@@ -12,6 +12,7 @@
         android:id="@+id/teamNameET"
         android:textColor="@color/white"
         android:padding="16dp"
+        android:maxLines="1"
         android:background="@drawable/dialog_bg"
         />
 

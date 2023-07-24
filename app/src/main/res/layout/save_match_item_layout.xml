@@ -37,7 +37,7 @@
                     android:layout_height="match_parent"
                     android:text="Team name"
                     android:id="@+id/teamNameTv"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textColor="@color/white"
                     android:layout_marginStart="12dp"/>
 
@@ -46,21 +46,26 @@
                     android:layout_height="match_parent"
                     android:text="Over : 4.6"
                     android:id="@+id/OverTv"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textColor="@color/white"
                     android:layout_marginStart="12dp"/>
 
             </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:src="@drawable/baseline_close_24"
                 android:contentDescription="delete score"
-                android:layout_gravity="end"
+                android:layout_alignParentEnd="true"
                 android:id="@+id/deleteScore"
-
+                android:layout_marginEnd="10dp"
                 />
+        </RelativeLayout>
 
         </LinearLayout>
 

@@ -11,7 +11,7 @@ abstract class AppDataBase : RoomDatabase() {
 
     companion object {
         private var database : AppDataBase? = null
-        private val DATABASE_NAME = "Cricket Score Calc"
+        private const val DATABASE_NAME = "Cricket Score Calc"
 
         @Synchronized
         fun getInstance(context:Context): AppDataBase{

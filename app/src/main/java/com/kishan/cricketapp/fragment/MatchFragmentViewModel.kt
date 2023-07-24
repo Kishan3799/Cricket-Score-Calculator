@@ -6,6 +6,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kishan.cricketapp.R
@@ -16,9 +17,6 @@ import kotlinx.coroutines.launch
 import java.util.Stack
 
 class MatchFragmentViewModel : ViewModel() {
-
-
-
 
     var name: String? = null
 
@@ -133,8 +131,13 @@ class MatchFragmentViewModel : ViewModel() {
             .setView(dialogView)
             .setTitle("Enter Team Name")
             .setPositiveButton("OK"){ dialog, which ->
+                if (teamNameEt.text.isNotEmpty()){
                     name = teamNameEt.text.toString()
                     textView.text = name
+                }else {
+                    Toast.makeText(context, "Please Enter this field!", Toast.LENGTH_SHORT).show()
+                }
+
             }
             .setNegativeButton("Cancel"){ dialog, which->
                 dialog.dismiss()
@@ -143,5 +146,30 @@ class MatchFragmentViewModel : ViewModel() {
 
         dialog.show()
     }
+
+    fun showOutOnClick(context: Context){
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_animate_out, null)
+        val dialog = Dialog(context)
+        dialog.setContentView(dialogView)
+        dialog.create()
+        dialog.show()
+    }
+
+    fun show4sOnClick(context: Context){
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_animate_4s, null)
+        val dialog = Dialog(context)
+        dialog.setContentView(dialogView)
+        dialog.create()
+        dialog.show()
+    }
+
+    fun show6sOnClick(context: Context){
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_animate_6s, null)
+        val dialog = Dialog(context)
+        dialog.setContentView(dialogView)
+        dialog.create()
+        dialog.show()
+    }
+
 
 }
